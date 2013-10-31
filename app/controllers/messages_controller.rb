@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
 
   # GET /messages/new
   def new
-    @message = Message.new(content: Faker::Lorem.sentences(2).join)
+    @message = Message.new(content: Faker::Lorem.sentences(rand(4) + 1).join)
   end
 
   # GET /messages/1/edit
@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
+        format.html { redirect_to action: 'index', notice: 'Message was successfully created.' }
         format.json { render action: 'show', status: :created, location: @message }
       else
         format.html { render action: 'new' }
