@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
   # GET /messages.json
   def index
     respond_to do |format|
-      format.html { @messages = Message.all }
+      format.html { @messages = Message.all.order('created_at DESC') }
       format.json {
         @messages = Message.parent_messages
         render json: @messages
