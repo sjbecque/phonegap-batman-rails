@@ -4,4 +4,5 @@ class Message < ActiveRecord::Base
   has_many :responses, class_name: 'Message'
 
   scope :parent_messages, lambda { where(message_id: nil).order('created_at DESC') }
+  scope :response_messages, lambda { where('message_id is not null') }
 end
