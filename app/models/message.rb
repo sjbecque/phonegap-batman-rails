@@ -3,6 +3,6 @@ class Message < ActiveRecord::Base
   belongs_to :message
   has_many :responses, class_name: 'Message'
 
-  default_scope { order('created_at DESC') }
-  scope :parent_messages, lambda { where(message_id: nil) }
+  scope :parent_messages, lambda { where(message_id: nil).order('created_at DESC') }
+  scope :response_messages, lambda { where('message_id is not null') }
 end

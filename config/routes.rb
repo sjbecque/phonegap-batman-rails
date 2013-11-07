@@ -1,5 +1,7 @@
 PhonegapBatmanRails::Application.routes.draw do
-  resources :messages
+  resources :messages do
+    resources :responses
+  end
 
   resources :users
 

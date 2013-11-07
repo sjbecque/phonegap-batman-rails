@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
   # GET /messages.json
   def index
     respond_to do |format|
-      format.html { @messages = Message.all }
+      format.html { @messages = Message.all.order('created_at DESC') }
       format.json {
         @messages = Message.parent_messages
         render json: @messages
@@ -16,6 +16,10 @@ class MessagesController < ApplicationController
   # GET /messages/1
   # GET /messages/1.json
   def show
+    respond_to do |format|
+      format.html {  }
+      format.json { render json: @message }
+    end
   end
 
   # GET /messages/new
@@ -75,6 +79,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:content, :user_id, :message_id)
+      params.require(:message).permit(:content, :user_id)
     end
 end
