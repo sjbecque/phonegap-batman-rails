@@ -6,13 +6,13 @@ class ResponsesController < ApplicationController
   # GET /messages.json
   def index
    @responses = Message.response_messages
-   render json: @responses
+   render json: @responses, root: 'responses'
   end
 
   # GET /messages/1
   # GET /messages/1.json
   def show
-    render json: @response
+    render json: @response, root: 'response'
   end
 
   # GET /messages/new
@@ -30,7 +30,7 @@ class ResponsesController < ApplicationController
     @response = Message.new(message_params)
 
     if @response.save
-      render json: @response
+      render json: @response, root: 'response'
     else
       render json: @response.errors, status: :unprocessable_entity
     end
@@ -56,7 +56,7 @@ class ResponsesController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_message
-    @response = Message.find(params[:id])
+    @response = Message.response_messages.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
