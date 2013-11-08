@@ -56,7 +56,7 @@ class ResponsesController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_message
-    @response = Message.find(params[:id])
+    @response = Message.response_messages.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
